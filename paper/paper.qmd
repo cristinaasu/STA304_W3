@@ -1,0 +1,76 @@
+---
+title: "My title"
+subtitle: "My subtitle if needed"
+author: 
+  - Cristina Su Lam
+thanks: "Code and data are available at: LINK."
+date: today
+date-format: long
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
+
+```
+
+# Introduction
+
+You can and should cross-reference sections and sub-sections. We use @talia, @opendatatorotno.
+
+# Data {#sec-mydatasection}
+
+```{r}
+
+# Assuming your data is in a dataframe called 'raw_data', inspect the data first
+head(data)
+
+# Create a bar chart: count of marriage licenses by civic center
+ggplot(data, aes(x = civic_centre, y = marriage_licenses)) +
+  geom_bar(stat = "identity") +  # 'identity' is used to plot the actual values
+  labs(
+    title = "Marriage Licenses Issued by Civic Center",
+    x = "Civic Centre",
+    y = "Number of Marriage Licenses"
+  ) +
+  theme_minimal() +  # Optional: for a clean theme
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels if needed
+
+```
+
+The bar chart illustrates the number of marriage licenses issued across various civic centers. Toronto (TO) stands out with a significantly higher number of marriage licenses compared to Scarborough (SC), North York (NY), and Etobicoke (ET), indicating that TO processes a much larger volume of licenses than the other centers.
+
+# Discussion
+
+## First discussion point {#sec-first-point}
+
+If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
+
+## Second discussion point
+
+## Third discussion point
+
+## Weaknesses and next steps
+
+Weaknesses and next steps should also be included.
+
+\newpage
+
+\appendix
+
+# Appendix {.unnumbered}
+
+# Additional data details
+
+\newpage
+
+# References
